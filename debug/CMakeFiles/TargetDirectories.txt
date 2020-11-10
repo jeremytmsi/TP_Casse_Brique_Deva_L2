@@ -1,0 +1,3 @@
+/home/lugurbal/Fac/L2_Info/Deva/TP/debug/CMakeFiles/rebuild_cache.dir
+/home/lugurbal/Fac/L2_Info/Deva/TP/debug/CMakeFiles/edit_cache.dir
+/home/lugurbal/Fac/L2_Info/Deva/TP/debug/CMakeFiles/TP.dir
