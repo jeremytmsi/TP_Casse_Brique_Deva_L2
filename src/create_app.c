@@ -3,7 +3,7 @@
 #include <SDL.h>
 
 
-SDL_Window *createWindow(char *titreFenetre, int longueur, int largeur, Uint32 modeAffichage){
+SDL_Window *creerFenetre(char *titreFenetre, int longueur, int largeur, Uint32 modeAffichage){
     SDL_Window *window = NULL;
     if(SDL_Init(SDL_INIT_VIDEO) == 0) {
         window = SDL_CreateWindow("Casse-brique", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, longueur, largeur,
@@ -17,4 +17,10 @@ SDL_Window *createWindow(char *titreFenetre, int longueur, int largeur, Uint32 m
     }
 
     return window;
+}
+
+void close_app(SDL_Window *window,SDL_Renderer *renderer){
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
 }
