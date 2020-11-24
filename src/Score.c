@@ -29,10 +29,9 @@
     if endgame = 1 {
     printf("Score de %s : %d", score);
     }
-
-
-
 }
+
+    
 
 
 
