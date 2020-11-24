@@ -17,6 +17,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endif()
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    add_executable(TP ${SOURCES})
+    add_executable(TP ${SOURCES} src/struct.c include/struct.h)
     target_link_libraries(${PROJECT_NAME} -lmingw32 -lSDL2main -lSDL2)
 endif()
