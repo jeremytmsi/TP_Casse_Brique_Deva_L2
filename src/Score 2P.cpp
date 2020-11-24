@@ -1,6 +1,12 @@
 //int score2j(int centerPointX, brick, rightPointX, brickWidth, posYBall, brickHeight, dy, speedBall, dx, posXBall, centerMiddleY, nextBrick, undefined) {
 // Score de la partie
+char nom1[21] = {0};
+printf("Nom du joueur1 ?");
+scanf("%s", nom1);
 int score1 = 0;
+char nom2[21] = {0};
+printf("Nom du joueur2 ?");
+scanf("%s", nom2);
 int score2 = 0;
 
 //Collisions si la balle tape la brique en bas
@@ -44,12 +50,12 @@ score2++;
 
 if endgame = 1 {
     if (score1 < score2) {
-        printf("VAINQUEUR : J2");
+        printf("VAINQUEUR : nom2");
         else
-        printf("VAINQUEUR : J1");
+        printf("VAINQUEUR : nom1");
     }
-    printf("SCORE J1: %d", score1);
-    printf("SCORE J2: %d", score2);
+    printf("SCORE %s: %d", nom1, score1);
+    printf("SCORE %s: %d", nom2, score2);
 }
 
 

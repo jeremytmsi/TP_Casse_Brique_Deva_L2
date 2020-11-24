@@ -1,5 +1,8 @@
 //int score(int centerPointX, brick, rightPointX, brickWidth, posYBall, brickHeight, dy, speedBall, dx, posXBall, centerMiddleY, nextBrick, undefined) {
 // Score de la partie
+    char nom[21] = {0};
+    printf("Nom du joueur ?");
+    scanf("%s", nom);
     int score = 0;
 
     //Collisions si la balle tape la brique en bas
@@ -24,7 +27,7 @@
     }
 
     if endgame = 1 {
-    printf("SCORE : %d", score);
+    printf("Score de %s : %d", score);
     }
 
 
