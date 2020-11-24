@@ -3,7 +3,7 @@
 //
 
 #include "../include/struct.h"
-
+/*
 
 int nbLines=5;
 int nbBricks=12;
@@ -54,3 +54,4 @@ couleur = "yellow"
 break
 }
 
+*/

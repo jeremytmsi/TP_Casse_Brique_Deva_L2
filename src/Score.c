@@ -1,3 +1,4 @@
+/*
 //int score(int centerPointX, brick, rightPointX, brickWidth, posYBall, brickHeight, dy, speedBall, dx, posXBall, centerMiddleY, nextBrick, undefined) {
 // Score de la partie
     char nom[21] = {0};
@@ -35,3 +36,4 @@
 
 
 
+*/

@@ -1,3 +1,4 @@
+/*
 //int score2j(int centerPointX, brick, rightPointX, brickWidth, posYBall, brickHeight, dy, speedBall, dx, posXBall, centerMiddleY, nextBrick, undefined) {
 // Score de la partie
 char nom1[21] = {0};
@@ -10,13 +11,13 @@ scanf("%s", nom2);
 int score2 = 0;
 
 //Collisions si la balle tape la brique en bas
-if ((centerPointX1 > brick.x) && (rightPointX1 < (brick.x + brickWidth)) && brick.visible && (posYBall1 <= (brick.y + brickHeight))) {
+if((centerPointX1 > brick.x) && (rightPointX1 < (brick.x + brickWidth)) && brick.visible && (posYBall1 <= (brick.y + brickHeight))) {
 dy1 = -dy1 - speedBall1;
 brick.visible == 0;
 score1++;
 }
 
-if ((centerPointX2 > brick.x) && (rightPointX2 < (brick.x + brickWidth)) && brick.visible && (posYBall2 <= (brick.y + brickHeight))) {
+if((centerPointX2 > brick.x) && (rightPointX2 < (brick.x + brickWidth)) && brick.visible && (posYBall2 <= (brick.y + brickHeight))) {
 dy2 = -dy2 - speedBall2;
 brick.visible == 0;
 score2++;
@@ -48,7 +49,7 @@ brick.visible == 0;
 score2++;
 }
 
-if endgame = 1 {
+if (endgame = 1) {
     if (score1 < score2) {
         printf("VAINQUEUR : nom2");
         else
@@ -61,3 +62,4 @@ if endgame = 1 {
 
 
 }
+ */
