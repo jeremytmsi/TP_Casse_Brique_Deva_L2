@@ -2,7 +2,14 @@
 #include <stdio.h>
 #include <SDL.h>
 
-
+/**
+ * Crée la fenêtre de l'application
+ * @param titreFenetre Le titre de la fenêtre
+ * @param longueur La longueur de la fenêtre
+ * @param largeur La largeur de la fenêtre
+ * @param modeAffichage Le mode d'affichage de la fenêtre (consulter la doc de la SDL pour plus d'info)
+ * @return
+ */
 SDL_Window *creerFenetre(char *titreFenetre, int longueur, int largeur, Uint32 modeAffichage){
     SDL_Window *window = NULL;
     if(SDL_Init(SDL_INIT_VIDEO) == 0) {
@@ -19,6 +26,11 @@ SDL_Window *creerFenetre(char *titreFenetre, int longueur, int largeur, Uint32 m
     return window;
 }
 
+/**
+ * Quitte l'application
+ * @param window Pointeur contenant la fenêtre
+ * @param renderer Pointeur contenant le renderer
+ */
 void close_app(SDL_Window *window,SDL_Renderer *renderer){
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

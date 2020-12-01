@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "../include/create_app.h"
 #include "../include/render.h"
+#include "../include/dessin.h"
 
 int main(int argc, char *argv[]) {
     int continuer = 1;
@@ -13,6 +14,10 @@ int main(int argc, char *argv[]) {
     renderer = creerRendu(window);
 
     afficherRendu(renderer);
+
+    char* mode = argv[1];
+
+    Brique **tabBriques = alloc_tab_briques(5,12);
 
 
     while(continuer){
@@ -29,6 +34,7 @@ int main(int argc, char *argv[]) {
                 close_app(window,renderer);
                 break;
         }
+        dessin(tabBriques,5,12,renderer);
     }
 
 }

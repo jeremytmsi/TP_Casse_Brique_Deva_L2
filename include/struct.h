@@ -1,10 +1,14 @@
-//
-// Created by Samuel Raoul on 17/11/2020.
-//
+#include <stdio.h>
 
-#ifndef TP_STRUCT_H
-#define TP_STRUCT_H
+typedef struct {
+    int x;
+    int y;
+    int taux_couleur_rouge;
+    int taux_couleur_bleu;
+    int taux_couleur_vert;
+    int visible;
+} Brique;
 
-#endif //TP_STRUCT_H
+Brique **alloc_tab_briques(int nbLignes, int nbColonnes);
 
-
+void free_tab_briques(Brique **tabBriques,int nbLignes,int nbColonnes);
