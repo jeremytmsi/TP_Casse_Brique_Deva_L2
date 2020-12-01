@@ -17,6 +17,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endif()
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    add_executable(TP ${SOURCES} src/Score.c "src/Score 2P.c")
+    add_executable(TP ${SOURCES} src/Score.c "src/Score 2P.c" src/Sauvegarde.cpp)
     target_link_libraries(${PROJECT_NAME} -lmingw32 -lSDL2main -lSDL2)
 endif()
