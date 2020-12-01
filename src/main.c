@@ -2,7 +2,6 @@
 #include <SDL.h>
 #include "../include/create_app.h"
 #include "../include/render.h"
-#include "../include/menu.h"
 
 int main(int argc, char *argv[]) {
     int continuer = 1;
