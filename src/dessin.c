@@ -26,7 +26,7 @@ Brique **creer_briques(int nbLignes, int nbColonnes){
 void dessin(Brique **tabBriques, int nbLignes, int nbColonnes, SDL_Renderer *renderer){
     for(int i = 0; i < nbLignes;i++){
         for(int j = 0; j < nbColonnes;j++){
-            if(SDL_SetRenderDrawColor(renderer,255,255,255,1) == 0){
+            if(SDL_SetRenderDrawColor(renderer,255,255,255,255) == 0){
                 SDL_Rect rect = {tabBriques[i][j].x,tabBriques[i][j].y, 25,10};
                 SDL_RenderFillRect(renderer,&rect);
                 SDL_RenderPresent(renderer);
