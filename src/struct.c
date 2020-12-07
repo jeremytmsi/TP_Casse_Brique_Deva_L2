@@ -11,7 +11,7 @@ Brique **alloc_tab_briques(int nbLignes, int nbColonnes){
     tabBriques = (Brique**)malloc(nbLignes * sizeof(Brique *));
 
     if(tabBriques != NULL){
-        for(int i = 0; i < nbColonnes;i++){
+        for(int i = 0; i < nbLignes;i++){
             tabBriques[i] = (Brique*)malloc(nbColonnes * sizeof(Brique));
         }
     }
@@ -19,8 +19,8 @@ Brique **alloc_tab_briques(int nbLignes, int nbColonnes){
     return tabBriques;
 }
 
-void free_tab_briques(Brique **tabBriques,int nbLignes,int nbColonnes){
-    for(int i = 0; i < nbColonnes;i++){
+void free_tab_briques(Brique **tabBriques, int nbLignes){
+    for(int i = 0; i < nbLignes;i++){
         free(tabBriques[i]);
     }
     free(tabBriques);

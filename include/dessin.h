@@ -2,4 +2,4 @@
 #include "../include/struct.h"
 
 void dessin(Brique **tabBriques, int nbLignes, int nbColonnes, SDL_Renderer *renderer);
-Brique **creer_briques(int nbLignes, int nbColonnes);
+void creer_briques(Brique **tabBriques,int nbLignes, int nbColonnes);

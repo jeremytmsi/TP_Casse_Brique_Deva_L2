@@ -8,4 +8,4 @@ typedef struct {
 
 Brique **alloc_tab_briques(int nbLignes, int nbColonnes);
 
-void free_tab_briques(Brique **tabBriques,int nbLignes,int nbColonnes);
+void free_tab_briques(Brique **tabBriques, int nbLignes);
