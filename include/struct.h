@@ -3,9 +3,6 @@
 typedef struct {
     int x;
     int y;
-    int taux_couleur_rouge;
-    int taux_couleur_bleu;
-    int taux_couleur_vert;
     int visible;
 } Brique;
 
