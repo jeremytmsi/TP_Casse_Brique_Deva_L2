@@ -25,3 +25,15 @@ void free_tab_briques(Brique **tabBriques, int nbLignes){
     }
     free(tabBriques);
 }
+
+Raquette *alloc_raquette(){
+    Raquette *raquette = NULL;
+
+    raquette = (Raquette *)malloc(sizeof(Raquette));
+
+    if(raquette != NULL){
+        return raquette;
+    } else {
+        return NULL;
+    }
+}
