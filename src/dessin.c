@@ -4,17 +4,48 @@
 
 
 void creer_briques(Brique **tabBriques,int nbLignes, int nbColonnes){
-    int x = 0, y = 0;
+    int x = 100, y = 50;
 
     for(int i = 0; i < nbLignes;i++){
         for(int j = 0; j < nbColonnes;j++){
             tabBriques[i][j].x = x;
             tabBriques[i][j].y = y;
             tabBriques[i][j].visible = 1;
-            x += 30;
+            x += 40;
         }
         y += 15;
-        x = 0;
+        x = 100;
+    }
+}
+
+Raquette *creer_raquette(){
+    Raquette *raq = alloc_raquette();
+    raq->x = 100;
+    raq->y = 300;
+    raq->longueur = 100;
+    raq->largeur = 10;
+
+    return raq;
+}
+
+void capturer_event_keyboard(SDL_Event e, Raquette *raq){
+    switch(e.key.keysym.sym){
+        case SDLK_LEFT:
+            fprintf(stdout,"Appui fleche gauche\n");
+            raq->x -= 10;
+            break;
+        case SDLK_RIGHT:
+            fprintf(stdout,"Appui fleche droite\n");
+            raq->x += 10;
+            break;
+    }
+}
+
+void dessiner_raquette(SDL_Renderer *renderer, Raquette raquette){
+    if(SDL_SetRenderDrawColor(renderer,255,255,255,255) == 0){
+        SDL_Rect rect = {raquette.x,raquette.y,raquette.longueur,raquette.largeur};
+        SDL_RenderFillRect(renderer,&rect);
+        SDL_RenderPresent(renderer);
     }
 }
 
