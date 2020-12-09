@@ -28,6 +28,8 @@ int main(int argc, char *argv[]) {
         SDL_PollEvent(&e);
         capturer_event_keyboard(e,raquette);
         dessiner_raquette(renderer,*raquette);
+        SDL_RenderClear(renderer);
+        afficherRendu(renderer);
 
 
         // Détecte l'appui clavier sur le bouton de fermeture
