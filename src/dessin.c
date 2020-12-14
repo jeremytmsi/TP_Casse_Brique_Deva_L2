@@ -39,6 +39,7 @@ void capturer_event_keyboard(SDL_Event e, Raquette *raq){
             raq->x += 10;
             break;
     }
+    SDL_Delay(100);
 }
 
 void dessiner_raquette(SDL_Renderer *renderer, Raquette raquette){

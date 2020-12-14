@@ -37,3 +37,23 @@ Raquette *alloc_raquette(){
         return NULL;
     }
 }
+
+void free_raquette(Raquette *raq){
+    free(raq);
+}
+
+Balle *alloc_balle(){
+    Balle *balle = NULL;
+
+    balle = (Balle *)malloc(sizeof(Balle));
+
+    if(balle != NULL){
+        return balle;
+    } else {
+        return NULL;
+    }
+}
+
+void free_balle(Balle *balle){
+    free(balle);
+}
