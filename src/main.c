@@ -31,12 +31,11 @@ int main(int argc, char *argv[]) {
 
     creer_briques(tabBriques,nbLignes,nbColonnes);
     while(continuer) {
-        //dessin(tabBriques, nbLignes, nbColonnes, renderer);
+        SDL_FillRect(ecran,NULL,0x00000);
         SDL_PollEvent(&e);
         capturer_event_keyboard(e, raquette);
         dessiner_raquette(*raquette,ecran,window);
         dessin(tabBriques,nbLignes,nbColonnes,ecran,window);
-
 
 
         // Détecte l'appui clavier sur le bouton de fermeture
@@ -44,13 +43,7 @@ int main(int argc, char *argv[]) {
             case SDL_QUIT:
                 continuer = 0;
                 free_tab_briques(tabBriques, nbLignes);
-                close_app(window, ecran);
-                break;
-        }
-        switch (e.key.keysym.sym) {
-            case SDLK_ESCAPE:
-                continuer = 0;
-                free_tab_briques(tabBriques, nbLignes);
+                free_raquette(raquette);
                 close_app(window, ecran);
                 break;
         }

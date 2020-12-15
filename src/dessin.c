@@ -43,7 +43,11 @@ void capturer_event_keyboard(SDL_Event e, Raquette *raq){
 }
 
 void dessiner_raquette(Raquette raquette, SDL_Surface *ecran,SDL_Window *window){
+    SDL_Surface *raqSurface = NULL;
     SDL_Rect raqRect;
+    SDL_Rect position;
+
+
     raqRect.x = raquette.x;
     raqRect.y = raquette.y;
     raqRect.w = raquette.longueur;
