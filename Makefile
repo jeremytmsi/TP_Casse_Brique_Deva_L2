@@ -2,7 +2,7 @@ CC=gcc
 EXEC=Casse_Brique
 LDFLAGS=-I include/SDL2 -L lib/SDL2
 
-all= $(EXEC)
+all :$(EXEC)
 
 Casse_Brique: obj/main.o obj/create_app.o obj/dessin.o obj/render.o obj/struct.o
 	$(CC) $(LDFLAGS) -o Casse_brique obj/main.o obj/create_app.o obj/dessin.o obj/render.o obj/struct.o -lmingw32 -lSDL2main -lSDL2

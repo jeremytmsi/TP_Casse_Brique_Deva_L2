@@ -39,6 +39,8 @@ int main(int argc, char *argv[]) {
     // On alloue l'espace mémoire nécessaire pour la raquette
     Raquette *raquette = creer_raquette();
 
+    Balle *balle = alloc_balle();
+
     // On crée les briques dans le tableau
     creer_briques(tabBriques,nbLignes,nbColonnes);
 
@@ -66,9 +68,9 @@ int main(int argc, char *argv[]) {
                 continuer = 0;
                 free_tab_briques(tabBriques, nbLignes);
                 free_raquette(raquette);
+                free_balle(balle);
                 close_app(window, ecran);
                 break;
         }
     }
-
 }

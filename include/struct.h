@@ -4,6 +4,8 @@ typedef struct {
     int x;
     int y;
     int visible;
+    int longueur;
+    int largeur;
 } Brique;
 
 typedef struct {

@@ -10,12 +10,15 @@
  */
 void creer_briques(Brique **tabBriques,int nbLignes, int nbColonnes){
     int x = 100, y = 50;
+    int longueur = 25, largeur = 10;
 
     for(int i = 0; i < nbLignes;i++){
         for(int j = 0; j < nbColonnes;j++){
             tabBriques[i][j].x = x;
             tabBriques[i][j].y = y;
             tabBriques[i][j].visible = 1;
+            tabBriques[i][j].longueur = longueur;
+            tabBriques[i][j].largeur = largeur;
             x += 40;
         }
         y += 15;
@@ -81,11 +84,10 @@ void dessiner_raquette(Raquette raquette, SDL_Surface *ecran,SDL_Window *window)
  * @param window La fenêtre de l'application
  */
 void dessin(Brique **tabBriques, int nbLignes, int nbColonnes, SDL_Surface *ecran, SDL_Window *window){
-    int longueur_brique = 25, largeur_brique = 10;
     for(int i = 0; i < nbLignes;i++){
         for(int j = 0; j < nbColonnes;j++){
                 if(tabBriques[i][j].visible){
-                    SDL_Rect rect = {tabBriques[i][j].x,tabBriques[i][j].y, longueur_brique,largeur_brique};
+                    SDL_Rect rect = {tabBriques[i][j].x,tabBriques[i][j].y, tabBriques[i][j].longueur, tabBriques[i][j].largeur};
                     SDL_FillRect(ecran,&rect,SDL_MapRGB(ecran->format,255,255,255));
                     SDL_UpdateWindowSurface(window);
                 }
