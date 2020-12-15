@@ -2,4 +2,4 @@
 
 void afficherRendu(SDL_Renderer *renderer);
 
-SDL_Renderer *creerRendu(SDL_Window *window);
+SDL_Surface *creerRendu(SDL_Window *window);

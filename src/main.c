@@ -7,44 +7,53 @@
 int main(int argc, char *argv[]) {
     int continuer = 1;
     SDL_Window *window = NULL;
-    SDL_Renderer *renderer = NULL;
+    SDL_Surface *ecran = NULL, *fond = NULL;
     SDL_Event e;
 
     int longueur = 640, largeur = 480;
     int nbLignes = 5, nbColonnes = 12;
 
     window = creerFenetre("Casse-brique",longueur,largeur,SDL_WINDOW_SHOWN);
-    renderer = creerRendu(window);
+    ecran = creerRendu(window);
 
-    //afficherRendu(renderer);
+    fond = SDL_CreateRGBSurface(0,longueur,largeur,32,0,0,0,0);
+
+    if(fond != NULL){
+        SDL_BlitSurface(fond,NULL,ecran,NULL);
+        SDL_FreeSurface(fond);
+        SDL_UpdateWindowSurface(window);
+    }
+
 
     Brique **tabBriques = alloc_tab_briques(nbLignes,nbColonnes);
 
     Raquette *raquette = creer_raquette();
 
     creer_briques(tabBriques,nbLignes,nbColonnes);
-    while(continuer){
-        dessin(tabBriques,nbLignes,nbColonnes,renderer);
+    while(continuer) {
+        //dessin(tabBriques, nbLignes, nbColonnes, renderer);
         SDL_PollEvent(&e);
-        capturer_event_keyboard(e,raquette);
-        dessiner_raquette(renderer,*raquette);
+        capturer_event_keyboard(e, raquette);
+        dessiner_raquette(*raquette,ecran,window);
 
 
+        /*
         // Détecte l'appui clavier sur le bouton de fermeture
-        switch(e.type) {
+        switch (e.type) {
             case SDL_QUIT:
                 continuer = 0;
-                free_tab_briques(tabBriques,nbLignes);
+                free_tab_briques(tabBriques, nbLignes);
                 close_app(window, renderer);
                 break;
         }
         switch (e.key.keysym.sym) {
             case SDLK_ESCAPE:
                 continuer = 0;
-                free_tab_briques(tabBriques,nbLignes);
-                close_app(window,renderer);
+                free_tab_briques(tabBriques, nbLignes);
+                close_app(window, renderer);
                 break;
         }
+         */
     }
 
 }

@@ -42,12 +42,15 @@ void capturer_event_keyboard(SDL_Event e, Raquette *raq){
     SDL_Delay(100);
 }
 
-void dessiner_raquette(SDL_Renderer *renderer, Raquette raquette){
-    if(SDL_SetRenderDrawColor(renderer,255,255,255,255) == 0){
-        SDL_Rect rect = {raquette.x,raquette.y,raquette.longueur,raquette.largeur};
-        SDL_RenderFillRect(renderer,&rect);
-        SDL_RenderPresent(renderer);
-    }
+void dessiner_raquette(Raquette raquette, SDL_Surface *ecran,SDL_Window *window){
+    SDL_Rect raqRect;
+    raqRect.x = raquette.x;
+    raqRect.y = raquette.y;
+    raqRect.w = raquette.longueur;
+    raqRect.h = raquette.largeur;
+
+    SDL_FillRect(ecran,&raqRect,SDL_MapRGB(ecran->format,255,255,255));
+    SDL_UpdateWindowSurface(window);
 }
 
 void dessin(Brique **tabBriques, int nbLignes, int nbColonnes, SDL_Renderer *renderer){
