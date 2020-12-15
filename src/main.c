@@ -35,25 +35,25 @@ int main(int argc, char *argv[]) {
         SDL_PollEvent(&e);
         capturer_event_keyboard(e, raquette);
         dessiner_raquette(*raquette,ecran,window);
+        dessin(tabBriques,nbLignes,nbColonnes,ecran,window);
 
 
-        /*
+
         // Détecte l'appui clavier sur le bouton de fermeture
         switch (e.type) {
             case SDL_QUIT:
                 continuer = 0;
                 free_tab_briques(tabBriques, nbLignes);
-                close_app(window, renderer);
+                close_app(window, ecran);
                 break;
         }
         switch (e.key.keysym.sym) {
             case SDLK_ESCAPE:
                 continuer = 0;
                 free_tab_briques(tabBriques, nbLignes);
-                close_app(window, renderer);
+                close_app(window, ecran);
                 break;
         }
-         */
     }
 
 }

@@ -53,17 +53,15 @@ void dessiner_raquette(Raquette raquette, SDL_Surface *ecran,SDL_Window *window)
     SDL_UpdateWindowSurface(window);
 }
 
-void dessin(Brique **tabBriques, int nbLignes, int nbColonnes, SDL_Renderer *renderer){
+void dessin(Brique **tabBriques, int nbLignes, int nbColonnes, SDL_Surface *ecran, SDL_Window *window){
     int longueur_brique = 25, largeur_brique = 10;
     for(int i = 0; i < nbLignes;i++){
         for(int j = 0; j < nbColonnes;j++){
-            if(SDL_SetRenderDrawColor(renderer,255,255,255,255) == 0){
                 if(tabBriques[i][j].visible){
                     SDL_Rect rect = {tabBriques[i][j].x,tabBriques[i][j].y, longueur_brique,largeur_brique};
-                    SDL_RenderFillRect(renderer,&rect);
-                    SDL_RenderPresent(renderer);
+                    SDL_FillRect(ecran,&rect,SDL_MapRGB(ecran->format,255,255,255));
+                    SDL_UpdateWindowSurface(window);
                 }
-            }
         }
     }
 }

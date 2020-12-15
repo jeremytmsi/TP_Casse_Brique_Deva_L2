@@ -31,8 +31,8 @@ SDL_Window *creerFenetre(char *titreFenetre, int longueur, int largeur, Uint32 m
  * @param window Pointeur contenant la fenêtre
  * @param renderer Pointeur contenant le renderer
  */
-void close_app(SDL_Window *window,SDL_Renderer *renderer){
-    SDL_DestroyRenderer(renderer);
+void close_app(SDL_Window *window,SDL_Surface *surface){
+    SDL_FreeSurface(surface);
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
