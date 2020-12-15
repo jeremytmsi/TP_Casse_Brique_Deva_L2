@@ -24,3 +24,7 @@ Brique **alloc_tab_briques(int nbLignes, int nbColonnes);
 void free_tab_briques(Brique **tabBriques, int nbLignes);
 
 Raquette *alloc_raquette();
+
+Balle *alloc_balle();
+
+void free_balle(Balle *balle);

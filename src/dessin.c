@@ -2,7 +2,12 @@
 #include <SDL.h>
 #include "../include/struct.h"
 
-
+/**
+ * Permet de créer les briques dans le tableau
+ * @param tabBriques Le tableau de briques à remplir
+ * @param nbLignes Le nombre de lignes qu'on veut dans notre jeu
+ * @param nbColonnes Le nombre de colonnes qu'on veut dans notre jeu
+ */
 void creer_briques(Brique **tabBriques,int nbLignes, int nbColonnes){
     int x = 100, y = 50;
 
@@ -18,6 +23,10 @@ void creer_briques(Brique **tabBriques,int nbLignes, int nbColonnes){
     }
 }
 
+/**
+ * Permet de créer la raquette
+ * @return raq La raquette créée
+ */
 Raquette *creer_raquette(){
     Raquette *raq = alloc_raquette();
     raq->x = 100;
@@ -28,6 +37,11 @@ Raquette *creer_raquette(){
     return raq;
 }
 
+/**
+ * Permet de faire bouger la raquette selon la touche appuyée sur le clavier
+ * @param e La liste des événements
+ * @param raq La raquette à faire bouger
+ */
 void capturer_event_keyboard(SDL_Event e, Raquette *raq){
     switch(e.key.keysym.sym){
         case SDLK_LEFT:
@@ -42,11 +56,14 @@ void capturer_event_keyboard(SDL_Event e, Raquette *raq){
     SDL_Delay(100);
 }
 
+/**
+ * Permet de dessiner la raquette
+ * @param raquette La raquette à dessiner
+ * @param ecran La surface de l'écran sur laquelle dessiner
+ * @param window La fenêtre de l'application
+ */
 void dessiner_raquette(Raquette raquette, SDL_Surface *ecran,SDL_Window *window){
-    SDL_Surface *raqSurface = NULL;
     SDL_Rect raqRect;
-    SDL_Rect position;
-
 
     raqRect.x = raquette.x;
     raqRect.y = raquette.y;
@@ -57,6 +74,14 @@ void dessiner_raquette(Raquette raquette, SDL_Surface *ecran,SDL_Window *window)
     SDL_UpdateWindowSurface(window);
 }
 
+/**
+ * Permet de dessiner les briques
+ * @param tabBriques Le tableau de briques à dessiner
+ * @param nbLignes Le nombre de lignes à dessiner
+ * @param nbColonnes Le nombre de colonnes à dessiner
+ * @param ecran La surface de l'écran à dessiner
+ * @param window La fenêtre de l'application
+ */
 void dessin(Brique **tabBriques, int nbLignes, int nbColonnes, SDL_Surface *ecran, SDL_Window *window){
     int longueur_brique = 25, largeur_brique = 10;
     for(int i = 0; i < nbLignes;i++){

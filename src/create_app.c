@@ -29,7 +29,7 @@ SDL_Window *creerFenetre(char *titreFenetre, int longueur, int largeur, Uint32 m
 /**
  * Quitte l'application
  * @param window Pointeur contenant la fenêtre
- * @param renderer Pointeur contenant le renderer
+ * @param surface Surface de l'écran
  */
 void close_app(SDL_Window *window,SDL_Surface *surface){
     SDL_FreeSurface(surface);
