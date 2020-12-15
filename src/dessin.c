@@ -45,11 +45,9 @@ Raquette *creer_raquette(){
 void capturer_event_keyboard(SDL_Event e, Raquette *raq){
     switch(e.key.keysym.sym){
         case SDLK_LEFT:
-            fprintf(stdout,"Appui fleche gauche\n");
             raq->x -= 10;
             break;
         case SDLK_RIGHT:
-            fprintf(stdout,"Appui fleche droite\n");
             raq->x += 10;
             break;
     }

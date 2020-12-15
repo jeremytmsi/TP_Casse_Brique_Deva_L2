@@ -48,10 +48,11 @@ int main(int argc, char *argv[]) {
         SDL_FillRect(ecran,NULL,0x00000);
 
         // On attend le prochain événement
-        SDL_PollEvent(&e);
+        if(SDL_PollEvent(&e)){
+            // On capture l'événement au niveau du clavier pour pouvoir bouger la raquette
+            capturer_event_keyboard(e, raquette);
+        }
 
-        // On capture l'événement au niveau du clavier pour pouvoir bouger la raquette
-        capturer_event_keyboard(e, raquette);
         // On dessine la raquette
         dessiner_raquette(*raquette,ecran,window);
 
