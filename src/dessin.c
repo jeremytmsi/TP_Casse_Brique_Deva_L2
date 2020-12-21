@@ -103,7 +103,11 @@ void dessin_balle(Balle balle,SDL_Surface *ecran,SDL_Window *window){
     balleRect.w = balle.longueur;
     balleRect.h = balle.largeur;
 
-    SDL_FillRect(ecran,&balleRect,SDL_MapRGB(ecran->format,255,255,255));
+    SDL_FillRect(ecran,&balleRect,SDL_MapRGB(ecran->format,255,0,0));
     SDL_UpdateWindowSurface(window);
 }
 
+void moveBalle(Balle *balle){
+    balle->x += balle->dx;
+    balle->y -= balle->dy;
+}

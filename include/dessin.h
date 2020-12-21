@@ -9,3 +9,4 @@ void capturer_event_keyboard(SDL_Event e, Raquette *raq);
 void free_raquette(Raquette *raq);
 void free_balle(Balle *balle);
 void dessin_balle(Balle balle,SDL_Surface *surface,SDL_Window *window);
+void moveBalle(Balle *balle);

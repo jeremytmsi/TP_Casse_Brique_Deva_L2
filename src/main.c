@@ -63,6 +63,8 @@ int main(int argc, char *argv[]) {
         // On dessine les briques
         dessin(tabBriques,nbLignes,nbColonnes,ecran,window);
 
+        moveBalle(balle);
+
 
         // Détecte l'appui clavier sur le bouton de fermeture
         switch (e.type) {

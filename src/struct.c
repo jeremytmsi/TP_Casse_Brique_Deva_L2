@@ -75,6 +75,8 @@ Balle *alloc_balle(){
         balle->y = 250;
         balle->longueur = 10;
         balle->largeur = 10;
+        balle->dx = 1;
+        balle->dy = 1;
         return balle;
     } else {
         return NULL;

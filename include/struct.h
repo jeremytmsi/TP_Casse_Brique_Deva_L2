@@ -20,6 +20,9 @@ typedef struct {
     int largeur;
     int x;
     int y;
+    int dx;
+    int dy;
+    double vitesse;
 } Balle;
 
 Brique **alloc_tab_briques(int nbLignes, int nbColonnes);
