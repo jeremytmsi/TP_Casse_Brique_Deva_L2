@@ -71,6 +71,10 @@ Balle *alloc_balle(){
     balle = (Balle *)malloc(sizeof(Balle));
 
     if(balle != NULL){
+        balle->x = 150;
+        balle->y = 250;
+        balle->longueur = 10;
+        balle->largeur = 10;
         return balle;
     } else {
         return NULL;

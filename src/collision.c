@@ -1,5 +1,6 @@
 #include "../include/collision.h"
 
+/*
 void detect_collision(Brique **tabBriques,Balle balle, int nbLignes, int nbColonnes){
     int posXMilieuBalle = (balle.x + balle.rayon);
     int posYBalle = balle.y;
@@ -12,3 +13,4 @@ void detect_collision(Brique **tabBriques,Balle balle, int nbLignes, int nbColon
         }
     }
 }
+ */

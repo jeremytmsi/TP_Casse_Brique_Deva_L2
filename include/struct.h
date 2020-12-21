@@ -16,7 +16,8 @@ typedef struct {
 } Raquette;
 
 typedef struct {
-    int rayon;
+    int longueur;
+    int largeur;
     int x;
     int y;
 } Balle;

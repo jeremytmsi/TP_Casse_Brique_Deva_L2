@@ -55,6 +55,8 @@ int main(int argc, char *argv[]) {
             capturer_event_keyboard(e, raquette);
         }
 
+        dessin_balle(*balle,ecran,window);
+
         // On dessine la raquette
         dessiner_raquette(*raquette,ecran,window);
 

@@ -95,3 +95,15 @@ void dessin(Brique **tabBriques, int nbLignes, int nbColonnes, SDL_Surface *ecra
     }
 }
 
+void dessin_balle(Balle balle,SDL_Surface *ecran,SDL_Window *window){
+    SDL_Rect balleRect;
+
+    balleRect.x = balle.x;
+    balleRect.y = balle.y;
+    balleRect.w = balle.longueur;
+    balleRect.h = balle.largeur;
+
+    SDL_FillRect(ecran,&balleRect,SDL_MapRGB(ecran->format,255,255,255));
+    SDL_UpdateWindowSurface(window);
+}
+
