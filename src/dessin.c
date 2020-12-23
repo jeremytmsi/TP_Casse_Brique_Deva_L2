@@ -54,7 +54,6 @@ void capturer_event_keyboard(SDL_Event e, Raquette *raq){
             raq->x += 10;
             break;
     }
-    SDL_Delay(100);
 }
 
 /**
@@ -110,4 +109,47 @@ void dessin_balle(Balle balle,SDL_Surface *ecran,SDL_Window *window){
 void moveBalle(Balle *balle){
     balle->x += balle->dx;
     balle->y -= balle->dy;
+}
+
+void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbLignes, int nbColonnes){
+    int centerPointX = (balle->x + balle->longueur);
+    int posYBalle = balle->y;
+    int centerMiddleY = (posYBalle + balle->largeur) / 2;
+    int downPointY = posYBalle + balle->largeur;
+    int rightPointX = balle->x + balle->longueur;
+
+    if(balle->x <= 0 || balle->x + balle->longueur >= 640){
+        balle->dx = -balle->dx;
+    }
+
+    if(posYBalle <= 0){
+        balle->dy = -balle->dy;
+    }
+
+    if(centerPointX >= raquette.x && centerPointX <= raquette.x + raquette.longueur && downPointY >= raquette.y && downPointY <= raquette.y + raquette.largeur){
+        balle->dy = -balle->dy;
+    }
+
+    for(int i = 0; i < nbLignes;i++){
+        for(int j = 0; j < nbColonnes;j++){
+            Brique briqueCourante = tabBriques[i][j];
+            Brique briqueSuivante = tabBriques[i][j+1];
+
+            if(centerPointX > briqueCourante.x && rightPointX < briqueCourante.x + briqueCourante.longueur && briqueCourante.visible && posYBalle <= briqueCourante.y + briqueCourante.largeur){
+                balle->dy = -balle->dy - balle->vitesse;
+                briqueCourante.visible = 0;
+            }
+
+            if(balle->x < briqueCourante.x + briqueCourante.longueur && centerMiddleY < briqueCourante.y + briqueCourante.largeur && centerMiddleY > briqueCourante.y && briqueCourante.visible && rightPointX > briqueCourante.x + briqueCourante.longueur){
+                balle->dx = -balle->dx - balle->vitesse;
+                briqueCourante.visible = 0;
+
+            }
+
+            if(rightPointX > briqueCourante.x && centerMiddleY < briqueCourante.y + briqueCourante.largeur && centerMiddleY > briqueCourante.y && briqueCourante.visible && rightPointX < briqueCourante.x + briqueCourante.longueur){
+                balle->dx = -balle->dx - balle->vitesse;
+                briqueCourante.visible = 0;
+            }
+        }
+    }
 }

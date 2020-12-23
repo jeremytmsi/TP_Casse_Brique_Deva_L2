@@ -65,6 +65,8 @@ int main(int argc, char *argv[]) {
 
         moveBalle(balle);
 
+        detect_collision(tabBriques,balle,*raquette,nbLignes,nbColonnes);
+
 
         // Détecte l'appui clavier sur le bouton de fermeture
         switch (e.type) {

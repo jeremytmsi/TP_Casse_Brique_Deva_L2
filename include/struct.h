@@ -20,8 +20,8 @@ typedef struct {
     int largeur;
     int x;
     int y;
-    int dx;
-    int dy;
+    double dx;
+    double dy;
     double vitesse;
 } Balle;
 
