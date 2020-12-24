@@ -92,6 +92,7 @@ void dessin(Brique **tabBriques, int nbLignes, int nbColonnes, SDL_Surface *ecra
                 }
         }
     }
+    SDL_Delay(20);
 }
 
 void dessin_balle(Balle balle,SDL_Surface *ecran,SDL_Window *window){
@@ -126,6 +127,7 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbL
         balle->dy = -balle->dy;
     }
 
+    // Condition rebond sur la raquette
     if(centerPointX >= raquette.x && centerPointX <= raquette.x + raquette.longueur && downPointY >= raquette.y && downPointY <= raquette.y + raquette.largeur){
         balle->dy = -balle->dy;
     }
@@ -135,20 +137,40 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbL
             Brique briqueCourante = tabBriques[i][j];
             Brique briqueSuivante = tabBriques[i][j+1];
 
-            if(centerPointX > briqueCourante.x && rightPointX < briqueCourante.x + briqueCourante.longueur && briqueCourante.visible && posYBalle <= briqueCourante.y + briqueCourante.largeur){
+            if(centerPointX > briqueCourante.x && centerPointX < briqueCourante.x + briqueCourante.longueur && briqueCourante.visible && posYBalle <= briqueCourante.y + briqueCourante.largeur) {
+                fprintf(stdout,"Brique touchee \n");
+                fprintf(stdout,"Adresse de la brique : %p\n",&briqueCourante);
+                fprintf(stdout,"Visibilite de la brique : %d",briqueCourante.visible);
                 balle->dy = -balle->dy - balle->vitesse;
-                briqueCourante.visible = 0;
+                (&briqueCourante)->visible = 0;
+                fprintf(stdout,"Visibilite de la brique apres touche : %d \n",briqueCourante.visible);
             }
 
-            if(balle->x < briqueCourante.x + briqueCourante.longueur && centerMiddleY < briqueCourante.y + briqueCourante.largeur && centerMiddleY > briqueCourante.y && briqueCourante.visible && rightPointX > briqueCourante.x + briqueCourante.longueur){
-                balle->dx = -balle->dx - balle->vitesse;
-                briqueCourante.visible = 0;
 
+            // Condition rebond côté droit
+            if(posYBalle >= briqueCourante.y && posYBalle <= briqueCourante.y + briqueCourante.largeur && briqueCourante.visible && balle->x <= briqueCourante.x + briqueCourante.longueur) {
+                fprintf(stdout,"Brique touchee \n");
+                fprintf(stdout,"Adresse de la brique : %p\n",&briqueCourante);
+                fprintf(stdout,"Visibilite de la brique : %d",briqueCourante.visible);
+                balle->dx = -balle->dx - balle->vitesse;
+                (&briqueCourante)->visible = 0;
+                fprintf(stdout,"Visibilite de la brique apres touche : %d \n",briqueCourante.visible);
             }
 
-            if(rightPointX > briqueCourante.x && centerMiddleY < briqueCourante.y + briqueCourante.largeur && centerMiddleY > briqueCourante.y && briqueCourante.visible && rightPointX < briqueCourante.x + briqueCourante.longueur){
-                balle->dx = -balle->dx - balle->vitesse;
-                briqueCourante.visible = 0;
+            if(posYBalle >= briqueCourante.y && posYBalle <= briqueCourante.y + briqueCourante.largeur && briqueCourante.visible && rightPointX >= briqueCourante.x){
+                fprintf(stdout,"Brique touchee \n");
+                fprintf(stdout,"Adresse de la brique : %p\n",&briqueCourante);
+                fprintf(stdout,"Visibilite de la brique : %d\n",briqueCourante.visible);
+                balle->dx = - balle->dx - balle->vitesse;
+                (&briqueCourante)->visible = 0;
+                fprintf(stdout,"Visibilite de la brique apres touche : %d \n",briqueCourante.visible);
+            }
+
+            if(&briqueSuivante != NULL && centerPointX > briqueCourante.x + briqueCourante.longueur && centerPointX < briqueSuivante.x && posYBalle <= briqueCourante.y + briqueCourante.largeur && briqueCourante.visible &&
+            briqueSuivante.visible){
+                balle->dy = - balle->dy - balle->vitesse;
+                (&briqueCourante)->visible = 0;
+                (&briqueSuivante)->visible = 0;
             }
         }
     }
