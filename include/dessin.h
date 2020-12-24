@@ -10,4 +10,4 @@ void free_raquette(Raquette *raq);
 void free_balle(Balle *balle);
 void dessin_balle(Balle balle,SDL_Surface *surface,SDL_Window *window);
 void moveBalle(Balle *balle);
-void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbLignes, int nbColonnes);
+void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbLignes, int nbColonnes, int *score, int *nbVies);

@@ -3,6 +3,7 @@
 #include "../include/create_app.h"
 #include "../include/render.h"
 #include "../include/dessin.h"
+#include "../include/score.h"
 
 int main(int argc, char *argv[]) {
     int continuer = 1;
@@ -12,6 +13,8 @@ int main(int argc, char *argv[]) {
 
     int longueur = 640, largeur = 480;
     int nbLignes = 5, nbColonnes = 12;
+    int score = 0;
+    int nbVies = 3;
 
     // On crée la fenêtre
     window = creerFenetre("Casse-brique",longueur,largeur,SDL_WINDOW_SHOWN);
@@ -46,14 +49,13 @@ int main(int argc, char *argv[]) {
 
     // Boucle de jeu
     while(continuer) {
-        // On remplit l'écran de noir pour actualiser le dessin
-        SDL_FillRect(ecran,NULL,0x00000);
-
         // On attend le prochain événement
         if(SDL_PollEvent(&e)){
             // On capture l'événement au niveau du clavier pour pouvoir bouger la raquette
             capturer_event_keyboard(e, raquette);
         }
+
+        SDL_FillRect(ecran,NULL,0x00000);
 
         dessin_balle(*balle,ecran,window);
 
@@ -63,10 +65,20 @@ int main(int argc, char *argv[]) {
         // On dessine les briques
         dessin(tabBriques,nbLignes,nbColonnes,ecran,window);
 
-        moveBalle(balle);
+        detect_collision(tabBriques,balle,*raquette,nbLignes,nbColonnes,&score,&nbVies);
 
-        detect_collision(tabBriques,balle,*raquette,nbLignes,nbColonnes);
+        if(nbVies > 0){
+            moveBalle(balle);
+            fprintf(stdout,"Score : %d \n",score);
+            fprintf(stdout,"Nombre de vies : %d \n",nbVies);
+        }
 
+
+        if(nbVies == 0){
+            enregister_score(score);
+            fprintf(stdout,"Votre score a bien ete enregistre !");
+            break;
+        }
 
         // Détecte l'appui clavier sur le bouton de fermeture
         switch (e.type) {

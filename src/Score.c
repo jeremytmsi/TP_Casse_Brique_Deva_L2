@@ -1,58 +1,19 @@
-/*
-//int score(int centerPointX, brick, rightPointX, brickWidth, posYBall, brickHeight, dy, speedBall, dx, posXBall, centerMiddleY, nextBrick, undefined) {
-// Score de la partie
-    char nom[21] = {0};
-    printf("Nom du joueur ?");
-    scanf("%s", nom);
-    int score = 0;
+#include <stdio.h>
+#include "../include/score.h"
 
-    //Collisions si la balle tape la brique en bas
-    if ((centerPointX > brick.x) && (rightPointX < (brick.x + brickWidth)) && brick.visible && (posYBall <= (brick.y + brickHeight))) {
-        dy = -dy - speedBall;
-        brick.visible == 0;
-        score++;
+/**
+ * Enregistre le score à l'intérieur d'un fichier nommé score.txt
+ * @param scoreAEnregistrer Le score à enregistrer
+ */
+void enregister_score(int scoreAEnregistrer){
+    FILE *f = NULL;
+
+    f = fopen("score.txt","w");
+
+    if(f != NULL){
+        fprintf(f,"Votre score : %d",scoreAEnregistrer);
     }
 
-    //Collisions côté droit de la brique
-    if ((posXBall < (brick.x + brickWidth)) && (centerMiddleY < (brick.y + brickHeight)) && (centerMiddleY > brick.y) && ((brick.visible && rightPointX) > (brick.x + brickWidth))) {
-        dx = -dx - speedBall;
-        brick.visible == 0;
-        score++;
-    }
+    fclose(f);
 
-    //Collision côté gauche
-    if ((rightPointX > brick.x) && (centerMiddleY < (brick.y + brickHeight)) && (centerMiddleY > brick.y) && brick.visible && (rightPointX < (brick.x + brickWidth))) {
-        dx = -dx - speedBall;
-        brick.visible == 0;
-        score++;
-    }
-
-    if endgame = 1 {
-    printf("Score de %s : %d", score);
-    }
 }
-
-    
-//Tableau des top scores
-char TopNom[99][19] = {0};
- for(int i = 0; i < 99;i++){
-    TopNom[i][0] = ' ';
-}
-int TopScore[99][0] = {0};
- for(int i = 0; i < 99;i++){
-    TopScore[i][0] = 0;
-}
-
- for (int i=0; i<=100; i++){
-    if (score>TopScore[i][0]){
-        TopScore[i][0] = score1;
-        TopNom[i]=nom1;
-        }
-
-for (int i=0; i<=99; i++){
- if (TopScore[i][0]>0){
- printf ("%c %d\", TopNom[i][0], TopScore[i][0]);
- }
-}
-
-*/
