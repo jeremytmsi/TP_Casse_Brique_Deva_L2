@@ -2,63 +2,6 @@
 #include <SDL.h>
 #include "../include/struct.h"
 
-/**
- * Permet de créer les briques dans le tableau
- * @param tabBriques Le tableau de briques à remplir
- * @param nbLignes Le nombre de lignes qu'on veut dans notre jeu
- * @param nbColonnes Le nombre de colonnes qu'on veut dans notre jeu
- */
-void creer_briques(Brique **tabBriques,int nbLignes, int nbColonnes){
-    int x = 100, y = 50;
-    int longueur = 25, largeur = 10;
-
-    for(int i = 0; i < nbLignes;i++){
-        for(int j = 0; j < nbColonnes;j++){
-            tabBriques[i][j].x = x;
-            tabBriques[i][j].y = y;
-            tabBriques[i][j].visible = 1;
-            tabBriques[i][j].longueur = longueur;
-            tabBriques[i][j].largeur = largeur;
-            x += 40;
-        }
-        y += 15;
-        x = 100;
-    }
-}
-
-/**
- * Permet de créer la raquette
- * @return raq La raquette créée
- */
-Raquette *creer_raquette(){
-    Raquette *raq = alloc_raquette();
-    raq->x = 100;
-    raq->y = 300;
-    raq->longueur = 100;
-    raq->largeur = 10;
-
-    return raq;
-}
-
-/**
- * Permet de faire bouger la raquette selon la touche appuyée sur le clavier
- * @param e La liste des événements
- * @param raq La raquette à faire bouger
- */
-void capturer_event_keyboard(SDL_Event e, Raquette *raq){
-    switch(e.key.keysym.sym){
-        case SDLK_LEFT:
-            if(raq->x > 0){
-                raq->x -= 10;
-            }
-            break;
-        case SDLK_RIGHT:
-            if((raq->x + raq->longueur) < 640){
-                raq->x += 10;
-            }
-            break;
-    }
-}
 
 /**
  * Permet de dessiner la raquette
@@ -170,22 +113,22 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbL
             Brique *briqueCourante = *(tabBriques + i) + j;
 
             if(balle->x > briqueCourante->x && rightPointX < (briqueCourante->x + briqueCourante->longueur + 15) && posYBalle == (briqueCourante->y + briqueCourante->largeur) && briqueCourante->visible){
-                balle->dy = -balle->dy - balle->vitesse;
-                balle->dx = -balle->dx - balle->vitesse;
+                balle->dy = -balle->dy;
+                balle->dx = -balle->dx;
                 briqueCourante->visible = 0;
                 *score += 1;
             }
 
             if(rightPointX == briqueCourante->x && posYBalle >= briqueCourante->y && downPointY <= briqueCourante->y + briqueCourante->largeur && briqueCourante->visible){
-                balle->dx = -balle->dx - balle->vitesse;
-                balle->dy = -balle->dy - balle->vitesse;
+                balle->dx = -balle->dx;
+                balle->dy = -balle->dy;
                 briqueCourante->visible = 0;
                 *score += 1;
             }
 
             if(balle->x == briqueCourante->x && posYBalle >= briqueCourante->y && downPointY <= briqueCourante->y + briqueCourante->largeur && briqueCourante->visible){
-                balle->dx = -balle->dx - balle->vitesse;
-                balle->dy = -balle->dy - balle->vitesse;
+                balle->dx = -balle->dx;
+                balle->dy = -balle->dy;
                 briqueCourante->visible = 0;
                 *score += 1;
             }
