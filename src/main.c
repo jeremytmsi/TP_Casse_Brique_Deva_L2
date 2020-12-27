@@ -69,8 +69,8 @@ int main(int argc, char *argv[]) {
 
         if(nbVies > 0){
             moveBalle(balle);
-            fprintf(stdout,"Score : %d \n",score);
-            fprintf(stdout,"Nombre de vies : %d \n",nbVies);
+            //fprintf(stdout,"Score : %d \n",score);
+            //fprintf(stdout,"Nombre de vies : %d \n",nbVies);
         }
 
 

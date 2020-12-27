@@ -48,10 +48,14 @@ Raquette *creer_raquette(){
 void capturer_event_keyboard(SDL_Event e, Raquette *raq){
     switch(e.key.keysym.sym){
         case SDLK_LEFT:
-            raq->x -= 10;
+            if(raq->x > 0){
+                raq->x -= 10;
+            }
             break;
         case SDLK_RIGHT:
-            raq->x += 10;
+            if((raq->x + raq->longueur) < 640){
+                raq->x += 10;
+            }
             break;
     }
 }
@@ -85,7 +89,7 @@ void dessiner_raquette(Raquette raquette, SDL_Surface *ecran,SDL_Window *window)
 void dessin(Brique **tabBriques, int nbLignes, int nbColonnes, SDL_Surface *ecran, SDL_Window *window){
     for(int i = 0; i < nbLignes;i++){
         for(int j = 0; j < nbColonnes;j++){
-                if(tabBriques[i][j].visible){
+                if(tabBriques[i][j].visible == 1){
                     SDL_Rect rect = {tabBriques[i][j].x,tabBriques[i][j].y, tabBriques[i][j].longueur, tabBriques[i][j].largeur};
                     SDL_FillRect(ecran,&rect,SDL_MapRGB(ecran->format,255,255,255));
                     SDL_UpdateWindowSurface(window);
@@ -147,7 +151,7 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbL
         balle->dy = -balle->dy;
     }
 
-    if(posYBalle >= 480){
+    if((posYBalle + balle->longueur) > 480){
         fprintf(stdout,"Perte d'une vie ! \n");
         *nbVies = *nbVies - 1;
         balle->x = 150;
@@ -163,51 +167,27 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbL
 
     for(int i = 0; i < nbLignes;i++){
         for(int j = 0; j < nbColonnes;j++){
-            Brique briqueCourante = tabBriques[i][j];
-            Brique briqueSuivante = tabBriques[i][j+1];
+            Brique *briqueCourante = *(tabBriques + i) + j;
 
-            if(centerPointX > briqueCourante.x && centerPointX < briqueCourante.x + briqueCourante.longueur && briqueCourante.visible && posYBalle <= briqueCourante.y + briqueCourante.largeur) {
-                //fprintf(stdout,"Brique touchee \n");
-                //fprintf(stdout,"Adresse de la brique : %p\n",&briqueCourante);
-                //fprintf(stdout,"Visibilite de la brique : %d",briqueCourante.visible);
+            if(balle->x > briqueCourante->x && rightPointX < (briqueCourante->x + briqueCourante->longueur + 15) && posYBalle == (briqueCourante->y + briqueCourante->largeur) && briqueCourante->visible){
                 balle->dy = -balle->dy - balle->vitesse;
-                (&briqueCourante)->visible = 0;
-                *score += 1;
-                break;
-                //fprintf(stdout,"Visibilite de la brique apres touche : %d \n",briqueCourante.visible);
-            }
-
-
-            // Condition rebond côté droit
-            if(posYBalle >= briqueCourante.y && posYBalle <= briqueCourante.y + briqueCourante.largeur && briqueCourante.visible && balle->x <= briqueCourante.x + briqueCourante.longueur) {
-                //fprintf(stdout,"Brique touchee \n");
-                //fprintf(stdout,"Adresse de la brique : %p\n",&briqueCourante);
-                //fprintf(stdout,"Visibilite de la brique : %d",briqueCourante.visible);
                 balle->dx = -balle->dx - balle->vitesse;
-                (&briqueCourante)->visible = 0;
+                briqueCourante->visible = 0;
                 *score += 1;
-                break;
-                //fprintf(stdout,"Visibilite de la brique apres touche : %d \n",briqueCourante.visible);
             }
 
-            if(posYBalle >= briqueCourante.y && posYBalle <= briqueCourante.y + briqueCourante.largeur && briqueCourante.visible && rightPointX >= briqueCourante.x){
-                //fprintf(stdout,"Brique touchee \n");
-                //fprintf(stdout,"Adresse de la brique : %p\n",&briqueCourante);
-                //fprintf(stdout,"Visibilite de la brique : %d\n",briqueCourante.visible);
-                balle->dx = - balle->dx - balle->vitesse;
-                (&briqueCourante)->visible = 0;
+            if(rightPointX == briqueCourante->x && posYBalle >= briqueCourante->y && downPointY <= briqueCourante->y + briqueCourante->largeur && briqueCourante->visible){
+                balle->dx = -balle->dx - balle->vitesse;
+                balle->dy = -balle->dy - balle->vitesse;
+                briqueCourante->visible = 0;
                 *score += 1;
-                break;
-                //fprintf(stdout,"Visibilite de la brique apres touche : %d \n",briqueCourante.visible);
             }
 
-            if(&briqueSuivante != NULL && centerPointX > briqueCourante.x + briqueCourante.longueur && centerPointX < briqueSuivante.x && posYBalle <= briqueCourante.y + briqueCourante.largeur && briqueCourante.visible &&
-            briqueSuivante.visible){
-                balle->dy = - balle->dy - balle->vitesse;
-                (&briqueCourante)->visible = 0;
-                (&briqueSuivante)->visible = 0;
-                *score += 2;
-                break;
+            if(balle->x == briqueCourante->x && posYBalle >= briqueCourante->y && downPointY <= briqueCourante->y + briqueCourante->largeur && briqueCourante->visible){
+                balle->dx = -balle->dx - balle->vitesse;
+                balle->dy = -balle->dy - balle->vitesse;
+                briqueCourante->visible = 0;
+                *score += 1;
             }
         }
     }

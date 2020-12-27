@@ -11,6 +11,7 @@ void enregister_score(int scoreAEnregistrer){
     f = fopen("score.txt","w");
 
     if(f != NULL){
+        fprintf(stdout,"Votre score : %d",scoreAEnregistrer);
         fprintf(f,"Votre score : %d",scoreAEnregistrer);
     }
 
