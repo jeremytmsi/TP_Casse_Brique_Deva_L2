@@ -98,8 +98,7 @@ void free_balle(Balle *balle){
  * @param nbLignes Le nombre de lignes qu'on veut dans notre jeu
  * @param nbColonnes Le nombre de colonnes qu'on veut dans notre jeu
  */
-void creer_briques(Brique **tabBriques,int nbLignes, int nbColonnes){
-    int x = 100, y = 50;
+void creer_briques(Brique **tabBriques,int nbLignes, int nbColonnes,int x, int y){
     int longueur = 25, largeur = 10;
 
     for(int i = 0; i < nbLignes;i++){
@@ -120,10 +119,10 @@ void creer_briques(Brique **tabBriques,int nbLignes, int nbColonnes){
  * Permet de créer la raquette
  * @return raq La raquette créée
  */
-Raquette *creer_raquette(){
+Raquette *creer_raquette(int x, int y){
     Raquette *raq = alloc_raquette();
-    raq->x = 100;
-    raq->y = 300;
+    raq->x = x;
+    raq->y = y;
     raq->longueur = 100;
     raq->largeur = 10;
 
@@ -134,18 +133,42 @@ Raquette *creer_raquette(){
  * Permet de faire bouger la raquette selon la touche appuyée sur le clavier
  * @param e La liste des événements
  * @param raq La raquette à faire bouger
+ * @param raq2 La raquette du joueur 2 (si elle existe)
  */
-void capturer_event_keyboard(SDL_Event e, Raquette *raq){
+void capturer_event_keyboard(SDL_Event e, Raquette *raq, Raquette *raq2){
     switch(e.key.keysym.sym){
+        // Correspond à la touche "flèche gauche" du clavier
         case SDLK_LEFT:
             if(raq->x > 0){
                 raq->x -= 10;
             }
             break;
+        // Correspond à la touche "flèche droite" du clavier
         case SDLK_RIGHT:
             if((raq->x + raq->longueur) < 640){
                 raq->x += 10;
             }
             break;
+        if(raq2 != NULL){
+            // Correspond à la touche "d" du clavier
+            case 100:
+                if(raq2->x + raq2->longueur < 640){
+                    raq2->x += 10;
+                }
+                break;
+            // Correspond à la touche "q" du clavier
+            case 113:
+                if(raq2->x > 0){
+                    raq2->x -= 10;
+                }
+        }
+    }
+}
+
+void reset_briques(Brique **tabBriques, int nbLignes, int nbColonnes){
+    for(int i = 0; i < nbLignes;i++){
+        for(int j = 0;j < nbColonnes;j++){
+            (&tabBriques)[i][j]->visible = 1;
+        }
     }
 }
