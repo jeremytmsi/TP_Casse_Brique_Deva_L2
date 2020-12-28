@@ -116,6 +116,13 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbL
                 balle->dy = -balle->dy;
                 balle->dx = -balle->dx;
                 briqueCourante->visible = 0;
+
+                if(balle->dx > 0){
+                    balle->dx += balle->vitesse;
+                } else if(balle->dx < 0){
+                    balle->dx -= balle->vitesse;
+                }
+
                 *score += 1;
             }
 
@@ -123,6 +130,13 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbL
                 balle->dx = -balle->dx;
                 balle->dy = -balle->dy;
                 briqueCourante->visible = 0;
+
+                if(balle->dx > 0){
+                    balle->dx += balle->vitesse;
+                } else if(balle->dx < 0){
+                    balle->dx -= balle->vitesse;
+                }
+
                 *score += 1;
             }
 
@@ -130,6 +144,13 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbL
                 balle->dx = -balle->dx;
                 balle->dy = -balle->dy;
                 briqueCourante->visible = 0;
+
+                if(balle->dx > 0){
+                    balle->dx += balle->vitesse;
+                } else if(balle->dx < 0){
+                    balle->dx -= balle->vitesse;
+                }
+
                 *score += 1;
             }
         }
