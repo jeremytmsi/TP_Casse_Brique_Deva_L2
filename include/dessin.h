@@ -7,4 +7,4 @@ void dessiner_raquette(Raquette raquette, SDL_Surface *ecran,SDL_Window *window)
 void dessin_balle(Balle balle,SDL_Surface *surface,SDL_Window *window);
 void moveBalle(Balle *balle);
 void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,
-                      int nbLignes, int nbColonnes,int *score, int *nbVies);
+                      Raquette *raq2,int nbLignes, int nbColonnes, int *score, int *nbVies);

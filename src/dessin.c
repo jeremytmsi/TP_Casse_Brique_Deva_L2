@@ -79,7 +79,7 @@ void moveBalle(Balle *balle){
  * @param score Pointeur contenant le score de la partie
  * @param nbVies Pointeur contenant le nombre de vies restantes de la partie
  */
-void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbLignes, int nbColonnes, int *score, int *nbVies){
+void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette, Raquette *raq2,int nbLignes, int nbColonnes, int *score, int *nbVies){
     int centerPointX = (balle->x + balle->longueur);
     int posYBalle = balle->y;
     int centerMiddleY = (posYBalle + balle->largeur) / 2;
@@ -101,6 +101,12 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette,int nbL
         balle->y = 250;
         balle->dx = 1;
         balle->dy = 1;
+    }
+
+    if(raq2 != NULL){
+        if(centerPointX >= raq2->x && centerPointX <= raq2->x + raq2->longueur && downPointY >= raq2->y && downPointY <= raq2->y + raq2->largeur){
+            balle->dy = -balle->dy;
+        }
     }
 
     // Condition rebond sur la raquette

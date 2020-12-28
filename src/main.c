@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
         dessin(tabBriques,nbLignes,nbColonnes,ecran,window);
 
         // Détecte les collisions entre la balle, les briques et les bordures de la fenêtre
-        detect_collision(tabBriques,balle,*raquette,nbLignes,nbColonnes,&score,&nbVies);
+        detect_collision(tabBriques,balle,*raquette,raq2,nbLignes,nbColonnes,&score,&nbVies);
 
         for(int i = 0; i < nbLignes;i++){
             for(int j = 0; j < nbColonnes;j++){
