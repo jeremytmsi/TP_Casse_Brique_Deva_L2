@@ -22,8 +22,8 @@ obj/render.o: src/render.c obj/
 obj/struct.o: src/struct.c obj/
 	$(CC) $(LDFLAGS) -c src/struct.c -o obj/struct.o
 
-obj/score.o: src/Score.c obj/
-	$(CC) $(LDFLAGS) -c src/Score.c -o obj/score.o
+obj/score.o: src/score.c obj/
+	$(CC) $(LDFLAGS) -c src/score.c -o obj/score.o
 
 obj/ :
 	mkdir obj
