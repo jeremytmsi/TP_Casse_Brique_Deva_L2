@@ -28,18 +28,7 @@ int main(int argc, char *argv[]) {
     ecran = creerSurface(window);
 
     // Crée le fond de la fenêtre
-    fond = SDL_CreateRGBSurface(0,longueur,largeur,32,0,0,0,0);
-
-    if(fond != NULL){
-        // On copie le fond de la fenêtre sur l'écran
-        SDL_BlitSurface(fond,NULL,ecran,NULL);
-
-        // On libère le fond de la fenêtre car on en a plus besoin
-        SDL_FreeSurface(fond);
-
-        // On met à jour la surface de la fenêtre
-        SDL_UpdateWindowSurface(window);
-    }
+    creer_fond(640,480,ecran,window);
 
     // On alloue l'espace mémoire nécessaire pour le tableau de briques
     Brique **tabBriques = alloc_tab_briques(nbLignes,nbColonnes);

@@ -13,6 +13,10 @@ le jeu).
 Lorsque vous êtes en mode duo, vouis pouvez contrôler une raquette à l'aide des flèches directionnelles
 et l'autre raquette peut être contrôlée via les touches "q" (pour la gauche) et "d" (pour la droite).
 
+## Bibliothèques externes utilisées
+Pour ce projet, nous avons utilisé la librairie graphique externe [SDL](https://www.libsdl.org/) (Simple DirectMedia Layer).
+Les différents fichiers de cette librairie sont inclus dans les dossiers /lib et /include du projet.
+
 ## Compilation
 
 ### Prérequis :

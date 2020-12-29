@@ -36,3 +36,27 @@ void close_app(SDL_Window *window,SDL_Surface *surface){
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
+
+/**
+ * Crée le fond de l'application
+ * @param longueur La longueur de la fenêtre
+ * @param largeur La largeur de la fenêtre
+ * @param ecran Le pointeur qui contient l'adresse de l'écran
+ * @param window Le pointeur qui contient l'adresse de la fenêtre
+ */
+void creer_fond(int longueur, int largeur,SDL_Surface *ecran, SDL_Window *window){
+    SDL_Surface *fond = NULL;
+
+    fond = SDL_CreateRGBSurface(0,longueur,largeur,32,0,0,0,0);
+
+    if(fond != NULL){
+        // On copie le fond de la fenêtre sur l'écran
+        SDL_BlitSurface(fond,NULL,ecran,NULL);
+
+        // On libère le fond de la fenêtre car on en a plus besoin
+        SDL_FreeSurface(fond);
+
+        // On met à jour la surface de la fenêtre
+        SDL_UpdateWindowSurface(window);
+    }
+}
