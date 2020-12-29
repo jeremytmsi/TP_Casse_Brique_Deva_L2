@@ -82,7 +82,6 @@ void moveBalle(Balle *balle){
 void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette, Raquette *raq2,int nbLignes, int nbColonnes, int *score, int *nbVies){
     int centerPointX = (balle->x + balle->longueur);
     int posYBalle = balle->y;
-    int centerMiddleY = (posYBalle + balle->largeur) / 2;
     int downPointY = posYBalle + balle->largeur;
     int rightPointX = balle->x + balle->longueur;
 
@@ -118,6 +117,7 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette, Raquet
         for(int j = 0; j < nbColonnes;j++){
             Brique *briqueCourante = *(tabBriques + i) + j;
 
+            // Collision brique en bas
             if(balle->x > briqueCourante->x && rightPointX < (briqueCourante->x + briqueCourante->longueur + 15) && posYBalle == (briqueCourante->y + briqueCourante->largeur) && briqueCourante->visible){
                 balle->dy = -balle->dy;
                 balle->dx = -balle->dx;
@@ -132,6 +132,7 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette, Raquet
                 *score += 1;
             }
 
+            // Collision brique côté gauche
             if(rightPointX == briqueCourante->x && posYBalle >= briqueCourante->y && downPointY <= briqueCourante->y + briqueCourante->largeur && briqueCourante->visible){
                 balle->dx = -balle->dx;
                 balle->dy = -balle->dy;
@@ -146,6 +147,7 @@ void detect_collision(Brique **tabBriques,Balle *balle,Raquette raquette, Raquet
                 *score += 1;
             }
 
+            // Collision brique côté droit
             if(balle->x == briqueCourante->x && posYBalle >= briqueCourante->y && downPointY <= briqueCourante->y + briqueCourante->largeur && briqueCourante->visible){
                 balle->dx = -balle->dx;
                 balle->dy = -balle->dy;
