@@ -22,7 +22,7 @@ Les différents fichiers de cette librairie sont inclus dans les dossiers /lib e
 ### Prérequis :
 - Avoir GCC et Make installés sur le système
 
-Une fois ces prérequis satisfaits, il suffit d'éxécuter cette commande (fonctionne uniquement avec Windows) :
+Une fois ces prérequis satisfaits, il suffit de vous rendre dans le dossier contenant les fichiers du jeu et d'éxécuter cette commande (fonctionne uniquement avec Windows) :
 
 ```shell script
 make all
